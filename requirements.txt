@@ -1,0 +1,5 @@
+Django==2.2.6
+pytz==2019.3
+sqlparse==0.3.0
+pillow==6.2.1
+django-mathfilters==0.1.2
