@@ -3,12 +3,10 @@ from django.contrib.auth.models import User
 
 
 class Tshirt(models.Model):
-    size = models.CharField(max_length=10)
-    image = models.ImageField()
-    gender = models.CharField(max_length=10) 
-
+    name = models.CharField(max_length=255,default='amfoss')
+    image = models.FileField(null=True,blank=True)
     def __str__(self):
-        return self.size
+        return self.name
 
 class UserProfileInfo(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)
@@ -17,3 +15,16 @@ class UserProfileInfo(models.Model):
     
     def __str__(self):
         return self.user
+
+class Cart(models.Model):
+    product = models.OneToOneField(Tshirt, on_delete=models.CASCADE, related_name='cart_item')
+    quantity = models.FloatField()
+    gender = models.CharField(max_length=2)
+    size = models.CharField(max_length=2)
+    created_date = models.DateTimeField(auto_now_add=True)
+    modified_date = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.product.name + str(self.quantity)
+
+

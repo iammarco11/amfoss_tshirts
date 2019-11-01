@@ -6,15 +6,16 @@
     
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"></head>
   <body>
-    <nav class="navbar navbar-default navbar-static-top">
+    <nav class="navbar navbar-default navbar-static-top navbar-inverse">
       <div class="container">
-        <ul class="nav navbar-nav">{# Django Home Link / Admin Link / Register Link#}
+        <ul class="nav navbar-nav">
           <li><a class="navbar-brand" href="{% url 'index' %}">amFOSS</a></li>
           <li><a class="navbar-link" href="{% url 'admin:index' %}">Admin</a></li>
           <li><a class="navbar-link" href="{% url 'tshirt:register' %}">Register</a></li>     
-          {# Some logic on what to display for last item#}
+          
           {% if user.is_authenticated %}
-            <li><a href="{% url 'logout' %}">Logout</a></li>
+            <li><a class="navbar-link" href="{% url 'logout' %}">Logout</a></li>
+            <li><a class="navbar-link" href="/tshirt/cart">Cart</a></li>
           {% else %}
             <li><a class="navbar-link" href="{% url 'tshirt:user_login' %}">Login</a></li>
           {% endif %}</ul>

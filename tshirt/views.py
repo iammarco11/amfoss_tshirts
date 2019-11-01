@@ -1,9 +1,14 @@
 from django.shortcuts import render
-from tshirt.forms import UserForm, UserProfileInfoForm
+from tshirt.forms import UserForm, UserProfileInfoForm , CartForm
 from django.contrib.auth import authenticate, login, logout
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponseRedirect, HttpResponse ,Http404, HttpRequest
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
+from .models import Tshirt, Cart
+from django.views.generic import TemplateView
+from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
+from django.shortcuts import redirect, render
 def index(request):
     return render(request,'tshirt/index.html')
 @login_required
@@ -55,3 +60,37 @@ def user_login(request):
             return HttpResponse("Invalid login details given")
     else:
         return render(request, 'tshirt/login.html', {})
+class ProductDetailView(DetailView):
+    model = Tshirt
+    template_name = 'tshirt/product-detail.html'
+    
+	
+
+    def get_context_data(self, **kwargs):
+
+        context = super().get_context_data(**kwargs)
+        context['form'] = CartForm(initial={'product': self.get_object()})
+        return context
+
+    def post(self, request, *args, **kwargs):
+        
+        form = CartForm(self.request.POST)
+        self.object = self.get_object()
+        if form.is_valid():
+            form.save()
+            return redirect('cart:cart')
+        context = self.get_context_data(**kwargs)
+        context['form'] = form
+        return self.render_to_response(context)
+
+    
+class CartView(ListView):
+    template_name = 'tshirt/cart.html'
+    model = Cart
+    def post(self, request, *args, **kwargs):
+        cart_id = self.request.POST.get('cart_id')
+        cart_obj=Cart.objects.filter(id=cart_id).first()
+        if cart_obj:
+            cart_obj.delete()
+            return redirect('cart:cart')
+        raise Http404() 

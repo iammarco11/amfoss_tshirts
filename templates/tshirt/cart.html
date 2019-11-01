@@ -1,0 +1,23 @@
+{% extends 'tshirt/base.html' %}
+
+
+{%block body_block %}
+
+
+
+<h1>Cart</h1> 
+<ul>
+    {% for object in object_list%}
+        <p> Product name: {{object.product.name}}</p>
+        <p> Quantity: {{object.quantity}}</p>
+        <form action="" method="POST">
+            {% csrf_token %}
+            
+            <input type="hidden" name = "cart_id" value="{{object.id}}">
+            <input type="submit" value="delete">
+        </form> 
+    {%empty%}
+        <p>No items has been added to the cart!</p>
+    {%endfor%}
+</ul>
+{% endblock%}

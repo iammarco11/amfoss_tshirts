@@ -5,8 +5,23 @@
     <h1>A portal to buy amfoss shirts</h1>
     {% if user.is_authenticated %}
         <h2>Hello {{ user.username }}</h2>
+        <h1>Product List</h1>
+    
+        <ul>
+        {% for Tshirt in object_list %}
+            
+            {%if Tshirt.image%}
+                <a href="tshirt/{{Tshirt.name}}/">{{Tshirt.name}}</a>
+                <img src="{{Tshirt.image.url}}" height = "100" width = "100">
+            {%endif%}
+            
+        {% empty %}
+            <li>No articles yet.</li>
+        {% endfor %}
+        </ul>
+        
     {% else %}
-        <h2>Register or Login if you'd like to</h2>
+        <h2>Register or Login to view the shirts</h2>
     {% endif %}
   </div>
 </div>
