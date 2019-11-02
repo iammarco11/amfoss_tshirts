@@ -7,11 +7,11 @@
     {% csrf_token %}
     {{ form.product }}
     {{form.product.errors}}
-    <label>Quantity:</label>{{form.quantity}}
+    <label>Quantity:</label>{{form.quantity}}<br>
     {{form.quantity.errors}}
-    <label>Size:</label>{{form.size}}
+    <label>Size:</label>{{form.size}}<br>
     {{form.size.errors}}
-    <label>Gender:</label>{{form.gender}}
+    <label>Gender:</label>{{form.gender}}<br>
     {{form.gender.errors}}
     <input type="submit" value="Add to cart">
 </form> 
