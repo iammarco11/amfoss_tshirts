@@ -64,7 +64,6 @@ class ProductDetailView(DetailView):
     model = Tshirt
     template_name = 'tshirt/product-detail.html'
     
-	
 
     def get_context_data(self, **kwargs):
 
@@ -83,13 +82,13 @@ class ProductDetailView(DetailView):
         context['form'] = form
         return self.render_to_response(context)
 
-    
+        
 class CartView(ListView):
     template_name = 'tshirt/cart.html'
     model = Cart
     def post(self, request, *args, **kwargs):
         cart_id = self.request.POST.get('cart_id')
-        cart_obj=Cart.objects.filter(id=cart_id).first()
+        cart_obj = Cart.objects.filter(id=cart_id).first()
         if cart_obj:
             cart_obj.delete()
             return redirect('cart:cart')

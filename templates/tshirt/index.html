@@ -9,10 +9,10 @@
     
         <ul>
         {% for Tshirt in object_list %}
-            
+            <li><a href="tshirt/{{Tshirt.slug}}">{{Tshirt.name}}</a></li>
+
             {%if Tshirt.image%}
-                <a href="tshirt/{{Tshirt.name}}/">{{Tshirt.name}}</a>
-                <img src="{{Tshirt.image.url}}" height = "100" width = "100">
+                <img src="{{Tshirt.image.url}}">
             {%endif%}
             
         {% empty %}

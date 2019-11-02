@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 
 class Tshirt(models.Model):
     name = models.CharField(max_length=255,default='amfoss')
+    slug = models.CharField(max_length=255, default='amfoss')
     image = models.FileField(null=True,blank=True)
     def __str__(self):
         return self.name

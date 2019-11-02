@@ -10,6 +10,8 @@
     {% for object in object_list%}
         <p> Product name: {{object.product.name}}</p>
         <p> Quantity: {{object.quantity}}</p>
+        <p> Size: {{object.size}}</p>
+        <p> Gender: {{object.gender}}</p>
         <form action="" method="POST">
             {% csrf_token %}
             
