@@ -94,3 +94,7 @@ class CartView(ListView):
             cart_obj.delete()
             return redirect('cart:cart')
         raise Http404() 
+class ProductListView(ListView):
+    template_name = 'tshirt/index.html'
+    model = Tshirt
+    
