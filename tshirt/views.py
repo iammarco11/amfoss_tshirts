@@ -76,13 +76,15 @@ class ProductDetailView(DetailView):
         form = CartForm(self.request.POST)
         self.object = self.get_object()
         if form.is_valid():
+            form = form.save(commit=False)
+            form.user = self.request.user
             form.save()
-            return redirect('cart:cart')
+            return redirect('tshirt:cart')
         context = self.get_context_data(**kwargs)
         context['form'] = form
         return self.render_to_response(context)
 
-        
+
 class CartView(ListView):
     template_name = 'tshirt/cart.html'
     model = Cart
@@ -91,8 +93,9 @@ class CartView(ListView):
         cart_obj = Cart.objects.filter(id=cart_id).first()
         if cart_obj:
             cart_obj.delete()
-            return redirect('cart:cart')
-        raise Http404() 
+            return redirect('tshirt:cart')
+        raise Http404()
+     
 class ProductListView(ListView):
     template_name = 'tshirt/index.html'
     model = Tshirt

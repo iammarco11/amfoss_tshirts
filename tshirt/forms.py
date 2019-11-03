@@ -17,13 +17,13 @@ class CartForm(forms.ModelForm):
         ('L','Large'),
         ('XL','Extra-large'),
     )
-    size = forms.Select(choices=SIZE_CHOICES)
+    size = forms.CharField(widget=forms.Select(choices=SIZE_CHOICES))
     quantity = forms.IntegerField(min_value=1,max_value=2)
     GENDER_CHOICES= (
         ('M','Male'),
         ('F','Female'),
     )
-    gender = forms.Select(choices=GENDER_CHOICES)
+    gender = forms.CharField(widget=forms.Select(choices=GENDER_CHOICES))
     class Meta:
         model = Cart
         fields = ['product','quantity','size','gender']

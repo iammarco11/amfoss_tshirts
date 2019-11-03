@@ -128,5 +128,8 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     ('node_modules', os.path.join(BASE_DIR, 'node_modules')),
 ]
-MEDIA_ROOT = MEDIA_DIR
+MEDIA_URL = '/media/'
+MEDIA_ROOT = (
+    os.path.join(BASE_DIR, 'media')
+)
 LOGIN_URL = '/tshirt/user_login/'
