@@ -70,7 +70,7 @@ class ProductDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         context['form'] = CartForm(initial={'product': self.get_object()})
         return context
-
+    
     def post(self, request, *args, **kwargs):
         
         form = CartForm(self.request.POST)
@@ -88,13 +88,20 @@ class ProductDetailView(DetailView):
 class CartView(ListView):
     template_name = 'tshirt/cart.html'
     model = Cart
+    
     def post(self, request, *args, **kwargs):
+        
         cart_id = self.request.POST.get('cart_id')
         cart_obj = Cart.objects.filter(id=cart_id).first()
         if cart_obj:
             cart_obj.delete()
             return redirect('tshirt:cart')
         raise Http404()
+    def get_queryset(self):
+        queryset = Cart.objects.all()
+        if self.request.user.is_authenticated:
+            queryset = queryset.filter(user=self.request.user)
+        return queryset
      
 class ProductListView(ListView):
     template_name = 'tshirt/index.html'

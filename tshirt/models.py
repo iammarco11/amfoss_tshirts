@@ -19,7 +19,7 @@ class UserProfileInfo(models.Model):
 
 class Cart(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    product = models.OneToOneField(Tshirt, on_delete=models.CASCADE, related_name='cart_item')
+    product = models.ForeignKey(Tshirt, on_delete=models.CASCADE, related_name='cart_item')
     quantity = models.FloatField()
     gender = models.CharField(max_length=2)
     size = models.CharField(max_length=2)
