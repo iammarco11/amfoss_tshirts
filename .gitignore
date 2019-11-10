@@ -4,7 +4,7 @@
 .idea
 .gitignore~
 
-media/*
+
 venv/
 .env
 local.env
