@@ -33,8 +33,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'djng',
-    
+      
     'tshirt',
     'django.contrib.admin',
     'django.contrib.auth',
