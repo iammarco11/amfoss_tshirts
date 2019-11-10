@@ -8,5 +8,5 @@ media/*
 venv/
 .env
 local.env
-db.sqlite3
+
 build/ 

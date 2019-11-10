@@ -12,7 +12,7 @@
             <li><a href="tshirt/{{Tshirt.slug}}">{{Tshirt.name}}</a></li>
 
             {%if Tshirt.image%}
-                <img src="{{Tshirt.image.url}}">
+                <img src="{{Tshirt.image.url}}" height="512" width = "512">
             {%endif%}
             
         {% empty %}
