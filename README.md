@@ -1,4 +1,4 @@
-# amfoss-tshirts
+ls# amfoss-tshirts
 
 This is made using django for amfoss club members to buy tshirts :smile:<br>
 I have added Google pay to this project.<br>
@@ -17,3 +17,7 @@ then go to the directory amfoss_tshirts and install all the packages <br>
 ```python manage.py migrate```<br>
 And then to host the server<br>
 ```python manage.py runserver```
+
+
+I have hosted the website through heroku
+[amfoss-tshirt](https://amfoss-tshirts.herokuapp.com/)
