@@ -4,7 +4,7 @@
 .idea
 .gitignore~
 
-
+db.sqlite3
 venv/
 .env
 local.env

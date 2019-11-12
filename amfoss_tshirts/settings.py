@@ -27,7 +27,7 @@ SECRET_KEY = '55&^(60vwi=@k#mq&b6f*nkj5ac1n+12s_h86@=%k9p6$-%7s3'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['amfoss-tshirts.herokuapp.com']
 
 
 # Application definition
@@ -44,6 +44,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -123,12 +124,18 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-
+STATIC_ROOT  =   os.path.join(PROJECT_ROOT, 'staticfiles')
+PROJECT_ROOT   =   os.path.join(os.path.abspath(__file__))
 STATICFILES_DIRS = [
-    ('node_modules', os.path.join(BASE_DIR, 'node_modules')),
+	os.path.join(PROJECT_ROOT, 'static'),
 ]
 MEDIA_URL = '/media/'
 MEDIA_ROOT = (
     os.path.join(BASE_DIR, 'media')
+import dj_database_url 
+prod_db  =  dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(prod_db)
+
 )
 LOGIN_URL = '/tshirt/user_login/'
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
