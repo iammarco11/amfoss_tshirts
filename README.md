@@ -1,6 +1,5 @@
 # amfoss-tshirts
-
-<a href="http://www.djangoproject.com/"><img src="https://www.djangoproject.com/m/img/badges/djangomade124x25_grey.gif" border="0" alt="Made with Django." title="Made with Django." /></a>
+<a href="http://www.djangoproject.com/"><img src="https://www.djangoproject.com/m/img/badges/djangomade124x25.gif" border="0" alt="Made with Django." title="Made with Django." /></a>
 
 This is made using django for amfoss club members to buy tshirts :smile:<br>
 I have added Google pay to this project.<br>
