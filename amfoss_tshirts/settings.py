@@ -13,7 +13,7 @@ MEDIA_DIR = os.path.join(BASE_DIR,'media')
 SECRET_KEY = '55&^(60vwi=@k#mq&b6f*nkj5ac1n+12s_h86@=%k9p6$-%7s3'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['amfoss-tshirts.herokuapp.com']
 

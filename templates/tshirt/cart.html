@@ -6,6 +6,8 @@
 
 
 <h1>Cart</h1> 
+<div id="container">
+
 <ul>
     {% for object in object_list%}
         <p> Product name: {{object.product.name}}</p>
@@ -18,8 +20,7 @@
             <input type="hidden" name = "cart_id" value="{{object.id}}">
             <input type="submit" value="delete">
             
-        </form> 
-<div id="container"></div>
+
 
 <script>
 
@@ -168,7 +169,8 @@ function processPayment(paymentData) {
   src="https://pay.google.com/gp/p/js/pay.js"
   onload="onGooglePayLoaded()"></script>
 
-        
+        </form> 
+</div>       
     {%empty%}
         <p>No items has been added to the cart!</p>
     {%endfor%}
