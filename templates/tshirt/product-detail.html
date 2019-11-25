@@ -1,6 +1,7 @@
 {% extends 'tshirt/base.html' %}
 
 {% block body_block %}
+
 <h1>Product Details</h1>
 <p>Name: {{ object.name }}</p>
 <form action="" method="POST">
@@ -15,4 +16,6 @@
     {{form.gender.errors}}
     <input type="submit" value="Add to cart">
 </form> 
+
 {%endblock%}
+
