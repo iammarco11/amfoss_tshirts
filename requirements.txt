@@ -1,7 +1,7 @@
 backports.shutil-get-terminal-size==1.0.0
 decorator==4.0.10
 dj-database-url==0.5.0
-Django==2.2.6
+Django==2.2.8
 django-heroku==0.3.1
 django-mathfilters==0.1.2
 enum34==1.1.6
