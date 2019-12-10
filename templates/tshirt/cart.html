@@ -3,7 +3,8 @@
 
 {%block body_block %}
 
-
+<div class="container">
+  <div class="jumbotron">
 
 <h1>Cart</h1> 
 <ul>
@@ -19,7 +20,7 @@
             <input type="submit" value="delete">
             
         </form> 
-<div id="container"></div>
+
 
 <script>
 
@@ -173,6 +174,8 @@ function processPayment(paymentData) {
         <p>No items has been added to the cart!</p>
     {%endfor%}
 </ul>
+</div>
+</div>
 {% endblock%}
 
 
