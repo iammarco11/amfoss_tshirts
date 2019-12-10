@@ -20,20 +20,15 @@
         </form> 
 
 
-<script>
+<div id="container"></div>
 
+<script>
 const baseRequest = {
   apiVersion: 2,
   apiVersionMinor: 0
 };
-
-
 const allowedCardNetworks = ["MASTERCARD", "VISA"];
-
-
 const allowedCardAuthMethods = ["PAN_ONLY", "CRYPTOGRAM_3DS"];
-
-
 const tokenizationSpecification = {
   type: 'PAYMENT_GATEWAY',
   parameters: {
@@ -41,7 +36,6 @@ const tokenizationSpecification = {
     'gatewayMerchantId': '6853512'
   }
 };
-
 const baseCardPaymentMethod = {
   type: 'CARD',
   parameters: {
@@ -49,8 +43,6 @@ const baseCardPaymentMethod = {
     allowedCardNetworks: allowedCardNetworks
   }
 };
-
-
 const cardPaymentMethod = Object.assign(
   {},
   baseCardPaymentMethod,
@@ -58,10 +50,7 @@ const cardPaymentMethod = Object.assign(
     tokenizationSpecification: tokenizationSpecification
   }
 );
-
-
 let paymentsClient = null;
-
 function getGoogleIsReadyToPayRequest() {
   return Object.assign(
       {},
@@ -71,29 +60,23 @@ function getGoogleIsReadyToPayRequest() {
       }
   );
 }
-
-
 function getGooglePaymentDataRequest() {
   const paymentDataRequest = Object.assign({}, baseRequest);
   paymentDataRequest.allowedPaymentMethods = [cardPaymentMethod];
   paymentDataRequest.transactionInfo = getGoogleTransactionInfo();
   paymentDataRequest.merchantInfo = {
     
-    merchantId: '0123456789',
-    merchantName: 'Example Merchant'
+    merchantId: '6853512',
+    merchantName: 'payu'
   };
   return paymentDataRequest;
 }
-
-
 function getGooglePaymentsClient() {
   if ( paymentsClient === null ) {
     paymentsClient = new google.payments.api.PaymentsClient({environment: 'TEST'});
   }
   return paymentsClient;
 }
-
-
 function onGooglePayLoaded() {
   const paymentsClient = getGooglePaymentsClient();
   paymentsClient.isReadyToPay(getGoogleIsReadyToPayRequest())
@@ -108,16 +91,12 @@ function onGooglePayLoaded() {
         console.error(err);
       });
 }
-
-
 function addGooglePayButton() {
   const paymentsClient = getGooglePaymentsClient();
   const button =
       paymentsClient.createButton({onClick: onGooglePaymentButtonClicked});
   document.getElementById('container').appendChild(button);
 }
-
-
 function getGoogleTransactionInfo() {
   return {
     countryCode: 'IND',
@@ -127,8 +106,6 @@ function getGoogleTransactionInfo() {
     totalPrice: '600'
   };
 }
-
-
 function prefetchGooglePaymentData() {
   const paymentDataRequest = getGooglePaymentDataRequest();
   
@@ -139,11 +116,9 @@ function prefetchGooglePaymentData() {
   const paymentsClient = getGooglePaymentsClient();
   paymentsClient.prefetchPaymentData(paymentDataRequest);
 }
-
 function onGooglePaymentButtonClicked() {
   const paymentDataRequest = getGooglePaymentDataRequest();
   paymentDataRequest.transactionInfo = getGoogleTransactionInfo();
-
   const paymentsClient = getGooglePaymentsClient();
   paymentsClient.loadPaymentData(paymentDataRequest)
       .then(function(paymentData) {
@@ -155,8 +130,6 @@ function onGooglePaymentButtonClicked() {
         console.error(err);
       });
 }
-
-
 function processPayment(paymentData) {
   
     console.log(paymentData);
@@ -166,6 +139,8 @@ function processPayment(paymentData) {
 <script async
   src="https://pay.google.com/gp/p/js/pay.js"
   onload="onGooglePayLoaded()"></script>
+
+
 
         
     {%empty%}
