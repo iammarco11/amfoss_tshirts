@@ -37,8 +37,8 @@ const allowedCardAuthMethods = ["PAN_ONLY", "CRYPTOGRAM_3DS"];
 const tokenizationSpecification = {
   type: 'PAYMENT_GATEWAY',
   parameters: {
-    'gateway': 'Example Merchant',
-    'gatewayMerchantId': '0123456789'
+    'gateway': 'payu',
+    'gatewayMerchantId': '6853512'
   }
 };
 
@@ -79,8 +79,8 @@ function getGooglePaymentDataRequest() {
   paymentDataRequest.transactionInfo = getGoogleTransactionInfo();
   paymentDataRequest.merchantInfo = {
     
-    merchantId: '6853512',
-    merchantName: 'payu'
+    merchantId: '0123456789',
+    merchantName: 'Example Merchant'
   };
   return paymentDataRequest;
 }
